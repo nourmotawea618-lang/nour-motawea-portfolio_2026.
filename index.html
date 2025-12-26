@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nour Motawea | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* 4-Color Luxury Palette */
+            --primary: #0A3D2E;    /* Deep Forest Green */
+            --accent: #D4AF37;     /* Elegant Gold */
+            --bg: #F9F9F5;         /* Creamy White */
+            --text: #212529;       /* Dark Charcoal */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary); }
+        .text-gold { color: var(--accent); }
+        .section-padding { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .center { text-align: center; }
+
+        /* --- HEADER --- */
+        header {
+            /* Fix: cover.jpg.png based on screenshot */
+            background: linear-gradient(rgba(10, 61, 46, 0.9), rgba(10, 61, 46, 0.85)), url('cover.jpg.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .profile-pic {
+            /* Fix: me.jpg.jpeg based on screenshot */
+            width: 200px; height: 200px;
+            border-radius: 50%; border: 4px solid var(--accent);
+            object-fit: cover; object-position: top;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+        }
+
+        header h1 { font-size: 3.5rem; letter-spacing: 2px; margin-bottom: 10px; }
+        
+        .social-icons a {
+            display: inline-flex; width: 50px; height: 50px;
+            border: 1px solid var(--accent); border-radius: 50%;
+            align-items: center; justify-content: center;
+            color: var(--accent); font-size: 1.5rem;
+            margin: 0 10px; transition: 0.3s; text-decoration: none;
+        }
+        .social-icons a:hover { background: var(--accent); color: var(--primary); transform: translateY(-3px); }
+
+        /* --- NARRATIVE --- */
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 6rem; }
+        .story-img { width: 100%; border-radius: 20px; border: 3px solid var(--accent); box-shadow: 15px 15px 0 var(--primary); }
+        .story-box { background: white; padding: 2.5rem; border-left: 5px solid var(--accent); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+
+        /* --- VO & BEHIND SCENES --- */
+        .vo-section { background: var(--primary); color: white; text-align: center; }
+        .vo-section h2 { color: white; }
+        .vo-grid { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin: 4rem 0; }
+        .vo-item { 
+            width: 300px; height: 350px; object-fit: cover; 
+            border-radius: 15px; border: 2px solid var(--accent); 
+            transition: 0.3s; opacity: 0.9;
+        }
+        .vo-item:hover { transform: scale(1.05); opacity: 1; }
+        
+        .btn {
+            display: inline-block; padding: 15px 40px; background: var(--accent); color: var(--primary);
+            text-decoration: none; font-weight: 800; border-radius: 50px; margin: 10px;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        }
+        .btn:hover { background: white; color: var(--primary); }
+
+        /* --- EXPERTISE --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 4rem; }
+        .skill-card { background: white; padding: 2.5rem; border-top: 5px solid var(--accent); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .skill-list { list-style: none; padding: 0; margin-top: 1.5rem; }
+        .skill-list li { padding: 12px 0; border-bottom: 1px dashed #ddd; display: flex; align-items: center; font-weight: 600; }
+        .skill-list li i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; }
+
+        /* --- STATS --- */
+        .stats-bar {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px; text-align: center; margin: 6rem 0; padding: 3rem;
+            background: white; border-radius: 20px;
+        }
+        .stat-num { font-size: 3.5rem; color: var(--accent); font-weight: 800; line-height: 1; }
+
+        /* --- CLIENTS (Book Slider) --- */
+        .client-section { background: var(--primary); color: white; }
+        .client-section h2 { color: white; }
+        .book-container { 
+            max-width: 800px; margin: 3rem auto; position: relative; 
+            background: var(--bg); color: var(--text); 
+            border: 4px solid var(--accent); padding: 3rem; border-radius: 20px; 
+            box-shadow: 20px 20px 0 rgba(0,0,0,0.3);
+        }
+        .client-slide { display: none; animation: fade 0.8s; text-align: left; }
+        .client-header { display: flex; align-items: center; gap: 20px; margin-bottom: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem; }
+        .c-logo { width: 120px; height: 120px; object-fit: contain; background: white; padding: 10px; border-radius: 10px; border: 1px solid #ddd; }
+        
+        .client-tasks li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .client-tasks li::before { content:'•'; color: var(--accent); font-weight: bold; position: absolute; left: 0; }
+
+        /* --- STORYBOARD (UGC) --- */
+        .sb-section { background: white; text-align: center; }
+        .sb-container { max-width: 900px; margin: 3rem auto; position: relative; border: 3px solid var(--accent); border-radius: 15px; overflow: hidden; }
+        .sb-slide { display: none; width: 100%; }
+        
+        /* Arrows */
+        .prev, .next { 
+            cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); 
+            padding: 10px; background: var(--primary); color: white; 
+            border-radius: 50%; width: 50px; height: 50px; 
+            display: flex; justify-content: center; align-items: center; 
+            border: 2px solid var(--accent); z-index: 10;
+        }
+        .prev { left: -25px; } .next { right: -25px; }
+
+        /* --- PORTFOLIO (Hover) --- */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 3rem; }
+        .port-item { 
+            position: relative; height: 300px; background: var(--primary); 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 15px; overflow: hidden; cursor: pointer; border: 2px solid var(--accent);
+        }
+        .port-title { color: var(--accent); z-index: 2; font-size: 1.8rem; text-align: center; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .port-img { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; opacity: 0; transition: 0.5s; 
+        }
+        .port-item:hover .port-img { opacity: 0.3; transform: scale(1.1); }
+        .port-item:hover .port-title { transform: translateY(-10px); }
+
+        /* --- WEB & SEO --- */
+        .web-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 3rem; }
+        .web-card { background: var(--bg); padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .web-card img { width: 100%; border-radius: 10px; border: 1px solid #ddd; margin-top: 15px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary); color: white; text-align: center;
+            padding: 6rem 2rem; margin-top: 6rem; border-top: 8px solid var(--accent);
+        }
+
+        @media(max-width:768px) {
+            .story-grid, .web-grid, .client-header { grid-template-columns: 1fr; flex-direction: column; text-align: center; }
+            header h1 { font-size: 2.8rem; }
+            .prev { left: 0; } .next { right: 0; }
+        }
+        @keyframes fade { from{opacity:0} to{opacity:1} }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="me.jpg.jpeg" alt="Profile" class="profile-pic">
+        <h1>NOUR MOTAWEA</h1>
+        <p style="color: var(--accent); letter-spacing: 4px; margin-bottom: 2rem; font-weight: 600;">SENIOR CONTENT CREATOR | STRATEGIST</p>
+        <p class="quote">"Every word has a story to tell."</p>
+        
+        <div class="social-icons">
+            <a href="https://wa.me/201023084274"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/in/nour-motawea/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/nourmotaweaa?igsh=NnJnejU4dmg0bXU5"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:nourmotawea618@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <h2 class="center" style="font-size: 3rem; margin-bottom: 4rem;">01. The Narrative</h2>
+        
+        <div class="story-grid">
+            <div class="story-box">
+                <h3 class="text-gold">Born into a World of Words</h3>
+                <p>I was born into a home filled with writing. My parents were established writers, and the library was my very first world. I started by creating "Vlog-style" videos for myself—handling everything from scripting to filming and editing.</p>
+            </div>
+            <img src="story1.jpg.png" alt="Childhood" class="story-img">
+        </div>
+
+        <div class="story-grid">
+            <img src="story2.jpg.png" alt="Theater" class="story-img">
+            <div class="story-box">
+                <h3 class="text-gold">The Theater Era</h3>
+                <p>From childhood through university, I acted in theater. It taught me the art of improvisation, how to view things from different perspectives, and how to convey emotion through words before action.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding vo-section">
+        <h2 style="font-size: 2.5rem;">Behind The Scenes & VO</h2>
+        <p>Entering the world of Voice Over unlocked a new door for self-expression.</p>
+        
+        <div class="vo-grid">
+            <img src="workspace_vo.jpg.jpeg" class="vo-item" alt="VO Studio">
+            <img src="workspace_vo4.jpg.jpg" class="vo-item" alt="VO Studio">
+        </div>
+        
+        <a href="https://drive.google.com/drive/folders/165edGnJylZajLIwwbosFWAiKuiLpUq6k?usp=drive_link" target="_blank" class="btn"><i class="fas fa-play"></i> Listen to Samples</a>
+        <a href="https://drive.google.com/drive/folders/1lw0UFWaubLApRc2TM3tZqQdCHlJSAxBQ?usp=sharing" target="_blank" class="btn"><i class="fas fa-video"></i> Watch Showreel</a>
+    </section>
+
+    <section class="section-padding">
+        <h2 class="center" style="font-size: 3rem;">02. Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3 class="text-gold"><i class="fas fa-brain"></i> Strategy & Planning</h3>
+                <ul class="skill-list">
+                    <li><i class="fas fa-check"></i> Marketing Strategy Development</li>
+                    <li><i class="fas fa-check"></i> Content Writing & Scriptwriting</li>
+                    <li><i class="fas fa-check"></i> Social Media Content Planning</li>
+                    <li><i class="fas fa-check"></i> SEO-Compatible Writing</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3 class="text-gold"><i class="fas fa-pen-nib"></i> Creative Production</h3>
+                <ul class="skill-list">
+                    <li><i class="fas fa-check"></i> Creative Direction</li>
+                    <li><i class="fas fa-check"></i> Copywriting</li>
+                    <li><i class="fas fa-check"></i> Voice Over (Arabic Dialects)</li>
+                    <li><i class="fas fa-check"></i> Video Filming & Editing</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="stats-bar">
+            <div><div class="stat-num">4+</div><p>Years Experience</p></div>
+            <div><div class="stat-num">50+</div><p>Projects Delivered</p></div>
+            <div><div class="stat-num">500+</div><p>Content Pieces</p></div>
+            <div><div class="stat-num">100+</div><p>Satisfied Clients</p></div>
+        </div>
+    </section>
+
+    <section class="section-padding client-section">
+        <h2 class="center" style="font-size: 3rem;">04. Clients & Partners</h2>
+        <div class="book-container">
+            
+            <div class="client-slide" style="display:block;">
+                <div class="client-header">
+                    <img src="client1.png.png" class="c-logo" alt="Tronners">
+                    <div><h3>Tronners Agency</h3><p class="text-gold">Senior Strategist</p></div>
+                </div>
+                <ul class="client-tasks">
+                    <li>Developed comprehensive 360-degree marketing plans.</li>
+                    <li>Created brand positioning strategies from scratch.</li>
+                    <li>Lead the creative team in visual storytelling.</li>
+                </ul>
+            </div>
+
+            <div class="client-slide">
+                <div class="client-header">
+                    <img src="client2.png.png" class="c-logo" alt="Arizona">
+                    <div><h3>Arizona Trader</h3><p class="text-gold">Head of Content</p></div>
+                </div>
+                <ul class="client-tasks">
+                    <li>Directed full social media presence.</li>
+                    <li>Crafted specialized financial content for Forex trading.</li>
+                    <li>Designed educational video series for new traders.</li>
+                </ul>
+            </div>
+
+            <div class="client-slide">
+                <div class="client-header">
+                    <img src="client3.jpg.jpg" class="c-logo" alt="Academy">
+                    <div><h3>CO Academy</h3><p class="text-gold">Social Media Strategist</p></div>
+                </div>
+                <ul class="client-tasks">
+                    <li>Managed educational content campaigns.</li>
+                    <li>Increased student engagement via interactive content.</li>
+                </ul>
+            </div>
+
+            <div class="client-slide">
+                <div class="client-header">
+                    <img src="client4.jpg.jpg" class="c-logo" alt="Hajzify">
+                    <div><h3>Hajzify</h3><p class="text-gold">Content Manager</p></div>
+                </div>
+                <ul class="client-tasks">
+                    <li>Created SaaS product tutorials and B2B content.</li>
+                    <li>Technical scriptwriting simplifying complex features.</li>
+                </ul>
+            </div>
+
+             <div class="client-slide">
+                <div class="client-header">
+                    <img src="client5.png.png" class="c-logo" alt="Shaheen">
+                    <div><h3>Shaheen</h3><p class="text-gold">Content Creator</p></div>
+                </div>
+                <ul class="client-tasks">
+                    <li>Revamped brand voice for modern audiences.</li>
+                    <li>Viral content creation for seasonal campaigns.</li>
+                </ul>
+            </div>
+
+            <a class="prev" onclick="moveSlide(-1, 'client')">&#10094;</a>
+            <a class="next" onclick="moveSlide(1, 'client')">&#10095;</a>
+        </div>
+    </section>
+
+    <section class="section-padding sb-section">
+        <h2 class="center" style="font-size: 3rem;">05. Visual Storytelling (UGC)</h2>
+        <p class="center" style="margin-bottom:2rem;">A sample of my storyboard scripting & direction.</p>
+        
+        <div class="sb-container">
+            <div class="sb-slide" style="display:block;"><img src="sb_cover.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_1.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_2.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_3.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_4.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_5.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_6.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_7.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_8.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_9.jpg.png" style="width:100%"></div>
+            <div class="sb-slide"><img src="sb_10.jpg.png" style="width:100%"></div>
+
+            <a class="prev" onclick="moveSlide(-1, 'sb')">&#10094;</a>
+            <a class="next" onclick="moveSlide(1, 'sb')">&#10095;</a>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <h2 class="center" style="font-size: 3rem;">Selected Work</h2>
+        <p class="center" style="margin-bottom: 3rem;">Hover to reveal</p>
+        
+        <div class="portfolio-grid">
+            <div class="port-item">
+                <h3 class="port-title">Marketing Plan</h3>
+                <img src="work1.png.png" class="port-img">
+            </div>
+            <div class="port-item">
+                <h3 class="port-title">Content Calendar</h3>
+                <img src="work2.png.png" class="port-img">
+            </div>
+            <div class="port-item">
+                <h3 class="port-title">Reports</h3>
+                <img src="work3.png.png" class="port-img">
+            </div>
+             <div class="port-item">
+                <h3 class="port-title">Website Content</h3>
+                <img src="web.jpg.png" class="port-img">
+            </div>
+             <div class="port-item">
+                <h3 class="port-title">SEO Research</h3>
+                <img src="seo.png.png" class="port-img">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div style="max-width:600px; margin:0 auto;">
+            <h2 class="text-gold" style="font-size: 3rem;">GO VIRAL.</h2>
+            <p style="font-size: 1.1rem; margin: 2rem 0;">I believe that every word and every idea has the power to create real impact.</p>
+            
+            <div style="margin-bottom: 3rem; font-size: 1.2rem; line-height: 2;">
+                <p><i class="fas fa-phone text-gold"></i> 01023084274</p>
+                <p><i class="fas fa-envelope text-gold"></i> NOURMOTAWEA618@GMAIL.COM</p>
+                <p><i class="fab fa-instagram text-gold"></i> @NOURMOTAWE</p>
+            </div>
+            
+            <a href="https://wa.me/201023084274" class="btn">Start Your Journey</a>
+            <br><br><br>
+            <small>&copy; 2025 Nour Motawea Portfolio</small>
+        </div>
+    </footer>
+
+    <script>
+        let clientIndex = 1;
+        let sbIndex = 1;
+
+        function moveSlide(n, type) {
+            if (type === 'client') {
+                showClients(clientIndex += n);
+            } else {
+                showSb(sbIndex += n);
+            }
+        }
+
+        function showClients(n) {
+            let slides = document.getElementsByClassName("client-slide");
+            if (n > slides.length) {clientIndex = 1}
+            if (n < 1) {clientIndex = slides.length}
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slides[clientIndex-1].style.display = "block";  
+        }
+
+        function showSb(n) {
+            let slides = document.getElementsByClassName("sb-slide");
+            if (n > slides.length) {sbIndex = 1}
+            if (n < 1) {sbIndex = slides.length}
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slides[sbIndex-1].style.display = "block";  
+        }
+
+        // --- AUTO-FIX SCRIPT (JUST IN CASE) ---
+        // This tries to fix any remaining issues with image names automatically
+        document.addEventListener("DOMContentLoaded", function() {
+            const allImages = document.getElementsByTagName('img');
+            for(let i=0; i<allImages.length; i++) {
+                allImages[i].onerror = function() {
+                    // Try removing the double extension if it exists
+                    if (this.src.endsWith('.png.png')) this.src = this.src.replace('.png.png', '.png');
+                    else if (this.src.endsWith('.jpg.jpg')) this.src = this.src.replace('.jpg.jpg', '.jpg');
+                    else if (this.src.endsWith('.jpg.png')) this.src = this.src.replace('.jpg.png', '.jpg');
+                    // Or try adding it if missing
+                    else if (!this.src.endsWith('.jpg.jpg') && !this.src.endsWith('.png.png')) {
+                        if(this.src.includes('.jpg')) this.src = this.src + '.jpg';
+                        if(this.src.includes('.png')) this.src = this.src + '.png';
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
